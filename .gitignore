@@ -39,3 +39,8 @@
 
 # Backup entities generated with doctrine:generate:entities command
 **/Entity/*~
+
+.idea/
+###> symfony/web-server-bundle ###
+.web-server-pid
+###< symfony/web-server-bundle ###
