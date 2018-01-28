@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    Het broodje van de dag:
+    Op {{upcomingBake.bakingDay|date('d-m')}} wordt er gebakken:
 
-    {{ upcomingBake.name }}
+    {{ upcomingBake.name }} ({{upcomingBake.quantity}})
 
 
 {% endblock %}
