@@ -5,7 +5,6 @@ namespace App\Controller;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class BreadController extends Controller
@@ -21,11 +20,11 @@ class BreadController extends Controller
     public function current()
     {
         try {
-            $activeBread = $this->getDoctrine()->getRepository('App:Bread')->findActiveBread();
+            $upcomingBake = $this->getDoctrine()->getRepository('App:Bread')->getUpcomingBake();
         } catch (NoResultException|NonUniqueResultException $exception) {
             return $this->render('no_active_bread.html.twig');
         }
 
-        return $this->render('active_bread.html.twig', ['bread' => $activeBread]);
+        return $this->render('upcoming_bake.html.twig', ['upcomingBake' => $upcomingBake]);
     }
 }

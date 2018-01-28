@@ -20,11 +20,14 @@ class BreadRepository extends ServiceEntityRepository
      * @throws \Doctrine\ORM\NoResultException
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function findActiveBread()
+    public function getUpcomingBake()
     {
         return $this->createQueryBuilder('b')
             ->orderBy('b.id', 'DESC')
-            ->setMaxResults(1)
+            ->where('b.bakingDay >= :now')
+            ->setParameters([
+                'now' => new \DateTime()
+            ])
             ->getQuery()
             ->getSingleResult()
         ;
