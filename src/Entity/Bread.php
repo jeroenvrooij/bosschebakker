@@ -50,7 +50,7 @@ class Bread
     /**
      * @return string
      */
-    public function getName(): string
+    public function getName(): ?string
     {
         return $this->name;
     }
@@ -70,7 +70,7 @@ class Bread
     /**
      * @return \DateTime
      */
-    public function getBakingDay(): \DateTime
+    public function getBakingDay(): ?\DateTime
     {
         return $this->bakingDay;
     }
@@ -90,7 +90,7 @@ class Bread
     /**
      * @return int
      */
-    public function getQuantity(): int
+    public function getQuantity(): ?int
     {
         return $this->quantity;
     }

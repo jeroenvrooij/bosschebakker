@@ -2,16 +2,19 @@
 
 namespace App\Controller;
 
+use App\Entity\Bread;
+use App\Form\BreadType;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 class BreadController extends Controller
 {
 
     /**
-     * @Route("/")
+     * @Route("/", name="home")
      *
      * @return \Symfony\Component\HttpFoundation\Response
      *
@@ -27,4 +30,35 @@ class BreadController extends Controller
 
         return $this->render('upcoming_bake.html.twig', ['upcomingBake' => $upcomingBake]);
     }
+
+    /**
+     * @Route("/create-upcoming-bake", name="create_upcoming_bake")
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     *
+     * @throws \LogicException
+     */
+    public function createUpcomingBake(Request $request)
+    {
+        $bread = new Bread();
+        $form = $this->createForm(BreadType::class, $bread);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $bread = $form->getData();
+
+             $em = $this->getDoctrine()->getManager();
+             $em->persist($bread);
+             $em->flush();
+
+            return $this->redirectToRoute('home');
+        }
+
+        return $this->render('create_upcoming_bake.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
+
 }
