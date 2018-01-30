@@ -34,9 +34,12 @@ class BreadController extends Controller
     /**
      * @Route("/create-upcoming-bake", name="create_upcoming_bake")
      *
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      *
      * @throws \LogicException
+     * @throws \Symfony\Component\Form\Exception\LogicException
      */
     public function createUpcomingBake(Request $request)
     {
