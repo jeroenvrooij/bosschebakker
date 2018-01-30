@@ -1,6 +1,14 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    <header class="header">
+        <h1 class="logo">Bossche Bakker</h1>
+        <ul class="navi">
+            <li><a href="{{ path('create_upcoming_bake') }}">Create new upcoming bake</a></li>
+        </ul>
+    </header>
+
+
     <div class="row">
         <div class="col">
             Op {{upcomingBake.bakingDay|date('d-m')}} wordt er gebakken:
