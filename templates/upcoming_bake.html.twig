@@ -1,9 +1,12 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    Op {{upcomingBake.bakingDay|date('d-m')}} wordt er gebakken:
+    <div class="row">
+        <div class="col">
+            Op {{upcomingBake.bakingDay|date('d-m')}} wordt er gebakken:
 
-    {{ upcomingBake.name }} ({{upcomingBake.quantity}})
-
+            {{ upcomingBake.name }} ({{upcomingBake.quantity}})
+        </div>
+    </div>
 
 {% endblock %}
