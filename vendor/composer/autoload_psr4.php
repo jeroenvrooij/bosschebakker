@@ -15,6 +15,8 @@ return array(
     'Symfony\\Component\\Yaml\\' => array($vendorDir . '/symfony/yaml'),
     'Symfony\\Component\\VarDumper\\' => array($vendorDir . '/symfony/var-dumper'),
     'Symfony\\Component\\Stopwatch\\' => array($vendorDir . '/symfony/stopwatch'),
+    'Symfony\\Component\\Security\\Csrf\\' => array($vendorDir . '/symfony/security-csrf'),
+    'Symfony\\Component\\Security\\Core\\' => array($vendorDir . '/symfony/security-core'),
     'Symfony\\Component\\Routing\\' => array($vendorDir . '/symfony/routing'),
     'Symfony\\Component\\PropertyAccess\\' => array($vendorDir . '/symfony/property-access'),
     'Symfony\\Component\\Process\\' => array($vendorDir . '/symfony/process'),
