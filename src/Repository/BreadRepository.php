@@ -28,6 +28,7 @@ class BreadRepository extends ServiceEntityRepository
             ->setParameters([
                 'now' => new \DateTime()
             ])
+            ->setMaxResults(1)
             ->getQuery()
             ->getSingleResult()
         ;
