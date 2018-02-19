@@ -3,21 +3,30 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class UserController extends Controller
 {
 
     /**
-     * @Route("login")
+     * @Route("/login", name="login")
      *
      * @return \Symfony\Component\HttpFoundation\Response
      *
-     * @throws \InvalidArgumentException
+     * @throws \LogicException
      */
-    public function login()
+    public function login(Request $request, AuthenticationUtils $authUtils)
     {
-        return $this->render("login.html.twig");
+        $error = $authUtils->getLastAuthenticationError();
+
+        // last username entered by the user
+        $lastUsername = $authUtils->getLastUsername();
+
+        return $this->render('login.html.twig', array(
+            'last_username' => $lastUsername,
+            'error'         => $error,
+        ));
     }
 }

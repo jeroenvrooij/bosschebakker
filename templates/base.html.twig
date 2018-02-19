@@ -11,6 +11,11 @@
     </head>
     <body>
         <div class="container-fluid">
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                <p>Username: {{ app.user.username }} <a href="{{ path('logout') }}">Logout</a></p>
+            {% endif %}
+        </div>
+        <div class="container-fluid">
             {% block body %}{% endblock %}
         </div>
         {% block javascripts %}
