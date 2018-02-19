@@ -7,6 +7,10 @@ security:
                     baker:
                         password: $2y$12$6HIeI43WciOnZ.AAAY5EieUzWJRHwrJN/4jY8F745AdTLOxJAyIkS
                         roles: 'ROLE_BAKER'
+        makkers:
+            entity:
+                class: App\Entity\User
+                property: username
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -14,6 +18,7 @@ security:
         main:
             anonymous: ~
             http_basic: false
+            provider: makkers
             form_login:
                 login_path: login
                 check_path: login
@@ -29,6 +34,10 @@ security:
 
     encoders:
         Symfony\Component\Security\Core\User\User:
+            algorithm: bcrypt
+            cost: 12
+
+        App\Entity\User:
             algorithm: bcrypt
             cost: 12
 
