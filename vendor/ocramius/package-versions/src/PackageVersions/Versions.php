@@ -25,6 +25,7 @@ final class Versions
   'doctrine/migrations' => 'v1.6.2@e3faf7c96b8a6084045dedcaf51f74c7834644d4',
   'doctrine/orm' => 'v2.6.0@374e7ace49d864dad8cddbc55346447c8a6a2083',
   'jdorn/sql-formatter' => 'v1.2.17@64990d96e0959dff8e059dfcdc1af130728d92bc',
+  'monolog/monolog' => '1.23.0@fd8c787753b3a2ad11bc60c063cff1358a32a3b4',
   'ocramius/package-versions' => '1.2.0@ad8a245decad4897cc6b432743913dad0d69753c',
   'ocramius/proxy-manager' => '2.1.1@e18ac876b2e4819c76349de8f78ccc8ef1554cd7',
   'psr/cache' => '1.0.1@d11b50ad223250cf17b86e38383413f5a6764bf8',
@@ -50,6 +51,8 @@ final class Versions
   'symfony/intl' => 'v4.0.4@e67537d88dd27c7ae9ca1ff05c51ebb8eb59c391',
   'symfony/lts' => 'dev-master@396c5fca8d73d01186df37d7031321a3c0c2bf92',
   'symfony/maker-bundle' => 'v1.0.2@bf97703ddb68c6b37bd6bab5f5ebd5c7542ca1ef',
+  'symfony/monolog-bridge' => 'v4.0.4@1b4fb2313312ec6cfae8ce45fccb2a88ec99d892',
+  'symfony/monolog-bundle' => 'v3.1.2@2b41b8b6d2c6edb1a5494f02f8e4129be2a44784',
   'symfony/options-resolver' => 'v4.0.4@371532a2cfe932f7a3766dd4c45364566def1dd0',
   'symfony/orm-pack' => 'v1.0.5@1b58f752cd917a08c9c8df020781d9c46a2275b1',
   'symfony/polyfill-intl-icu' => 'v1.6.0@d2bb2ef00dd8605d6fbd4db53ed4af1395953497',
@@ -74,7 +77,7 @@ final class Versions
   'symfony/var-dumper' => 'v4.0.3@883f6109a2069773e088c08626b87a3d3d61c566',
   'symfony/web-profiler-bundle' => 'v4.0.3@20a04d0672d7f538d1c06ded7bf5990f23c089aa',
   'symfony/web-server-bundle' => 'v4.0.3@20ad52df8164d2eae029e6bb24356956c52380be',
-  '__root__' => 'dev-master@b3ca44b162683b57cd42341f4723801e37edafba',
+  '__root__' => 'dev-master@2bffd31c7026c4577a77b3ed8632a4f4000c8756',
 );
 
     private function __construct()
