@@ -14,6 +14,9 @@
             Op {{upcomingBake.bakingDay|date('d-m')}} wordt er gebakken:
 
             {{ upcomingBake.name }} ({{upcomingBake.quantity}})
+
+
+            <a href="{{ path('claim_a_bread', {'id': upcomingBake.id}) }}">Ik wil er wel 1!</a>
         </div>
     </div>
 

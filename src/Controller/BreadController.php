@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Bread;
+use App\Entity\Order;
 use App\Form\BreadType;
+use App\Form\OrderType;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -51,9 +53,9 @@ class BreadController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $bread = $form->getData();
 
-             $em = $this->getDoctrine()->getManager();
-             $em->persist($bread);
-             $em->flush();
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($bread);
+            $em->flush();
 
             return $this->redirectToRoute('home');
         }
@@ -63,5 +65,38 @@ class BreadController extends Controller
         ]);
     }
 
+    /**
+     * @Route("/claim-a-bread/{id}", name="claim_a_bread")
+     *
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     *
+     * @throws \LogicException
+     * @throws \Symfony\Component\Form\Exception\LogicException
+     */
+    public function claimABread(Request $request, Bread $bread)
+    {
+        $order = new Order();
+        $order->setBread($bread);
+        $order->setUser($this->getUser());
+        $form = $this->createForm(OrderType::class, $order);
 
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $order = $form->getData();
+            $order->setOrderedAt(new \DateTime());
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($order);
+            $em->flush();
+
+            return $this->redirectToRoute('home');
+        }
+
+        return $this->render('claim_a_bread.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
 }
