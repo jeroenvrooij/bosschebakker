@@ -1,15 +1,21 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="row">
-        <div class="col">
-            Op {{upcomingBake.bakingDay|date('d-m')}} wordt er gebakken:
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                Op {{upcomingBake.bakingDay|date('d-m')}} wordt er gebakken:
 
-            {{ upcomingBake.name }} ({{upcomingBake.quantityLeft}})
+                {{ upcomingBake.name }} ({{upcomingBake.quantityLeft}})
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                {% if is_granted('ROLE_MAKKER') and not is_granted('ROLE_BAKER') %}
+                    <a href="{{ path('claim_a_bread', {'id': upcomingBake.id}) }}" class="btn btn-outline-secondary" style="margin-top: 20px;">Bestel een brood</a>
+                {% endif %}
 
-            {% if is_granted('ROLE_MAKKER') and not is_granted('ROLE_BAKER') %}
-                <a href="{{ path('claim_a_bread', {'id': upcomingBake.id}) }}">Ik wil er wel 1!</a>
-            {% endif %}
+            </div>
         </div>
     </div>
 
