@@ -11,10 +11,10 @@ use Doctrine\ORM\NoResultException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class BreadController extends Controller
 {
-
     /**
      * @Route("/", name="home")
      *
@@ -68,15 +68,28 @@ class BreadController extends Controller
     /**
      * @Route("/claim-a-bread/{id}", name="claim_a_bread")
      *
-     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param \Symfony\Component\Validator\Validator\ValidatorInterface $validator
+     * @param \Symfony\Component\HttpFoundation\Request                 $request
+     * @param \App\Entity\Bread                                         $bread
      *
      * @return \Symfony\Component\HttpFoundation\Response
-     *
      * @throws \LogicException
      * @throws \Symfony\Component\Form\Exception\LogicException
      */
-    public function claimABread(Request $request, Bread $bread)
+    public function claimABread(ValidatorInterface $validator, Request $request, Bread $bread)
     {
+        $errors = $validator->validate($bread);
+
+        if (count($errors) > 0) {
+            foreach ($errors as $error) {
+                $this->addFlash(
+                    'danger',
+                    $error->getMessage()
+                );
+            }
+            return $this->redirectToRoute('home');
+        }
+
         $order = new Order();
         $order->setBread($bread);
         $order->setUser($this->getUser());
@@ -85,6 +98,8 @@ class BreadController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $bread->processOrder();
+
             $em = $this->getDoctrine()->getManager();
 
             $order = $form->getData();
@@ -92,7 +107,6 @@ class BreadController extends Controller
             $em->persist($order);
             $em->flush($order);
 
-            $bread->processOrder();
             $em->persist($bread);
             $em->flush($bread);
 

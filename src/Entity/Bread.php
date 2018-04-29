@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\BreadRepository")
@@ -41,6 +42,10 @@ class Bread
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\GreaterThan(
+     *     value = 0,
+     *     message = "Sorry makker, er zijn geen broden meer."
+     * )
      *
      * @var int
      */
