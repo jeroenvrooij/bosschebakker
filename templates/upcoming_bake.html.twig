@@ -1,22 +1,25 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
+{% block header %}
     <header class="header">
         <h1 class="logo">Bossche Bakker</h1>
         <ul class="navi">
-            <li><a href="{{ path('create_upcoming_bake') }}">Create new upcoming bake</a></li>
+            {% if is_granted('ROLE_BAKER') %}
+                <li><a href="{{ path('create_upcoming_bake') }}">Create new upcoming bake</a></li>
+            {% endif %}
         </ul>
     </header>
-
-
+{% endblock %}
+{% block body %}
     <div class="row">
         <div class="col">
             Op {{upcomingBake.bakingDay|date('d-m')}} wordt er gebakken:
 
             {{ upcomingBake.name }} ({{upcomingBake.quantity}})
 
-
-            <a href="{{ path('claim_a_bread', {'id': upcomingBake.id}) }}">Ik wil er wel 1!</a>
+            {% if is_granted('ROLE_MAKKER') and not is_granted('ROLE_BAKER') %}
+                <a href="{{ path('claim_a_bread', {'id': upcomingBake.id}) }}">Ik wil er wel 1!</a>
+            {% endif %}
         </div>
     </div>
 

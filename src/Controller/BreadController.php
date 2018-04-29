@@ -92,6 +92,11 @@ class BreadController extends Controller
             $em->persist($order);
             $em->flush();
 
+            $this->addFlash(
+                'success',
+                'Gelukt! Bedankt voor je bestelling, alles komt voor de bakker!'
+            );
+
             return $this->redirectToRoute('home');
         }
 
