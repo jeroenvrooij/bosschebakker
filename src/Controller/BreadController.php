@@ -98,8 +98,6 @@ class BreadController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $bread->processOrder();
-
             $em = $this->getDoctrine()->getManager();
 
             $order = $form->getData();
@@ -107,6 +105,7 @@ class BreadController extends Controller
             $em->persist($order);
             $em->flush($order);
 
+            $bread->processOrder();
             $em->persist($bread);
             $em->flush($bread);
 
