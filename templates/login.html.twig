@@ -2,20 +2,8 @@
 
 {% block body %}
 
-    {% if error %}
-        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
-
-    <form action="{{ path('login') }}" method="post">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="_username" value="{{ last_username }}" />
-
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="_password" />
-
-        <input type="hidden" name="_target_path" value="/" />
-        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-
-        <button type="submit">login</button>
-    </form>
+    <div class="container-fluid">
+        <h1>Gesloten</h1>
+        <span>Sorry, de Makkerij is alleen geopend voor makkers. Ben je een makker? Log dan in via het formulier in het menu!</span>
+    </div>
 {% endblock %}

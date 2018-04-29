@@ -1,15 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block header %}
-    <header class="header">
-        <h1 class="logo">Bossche Bakker</h1>
-        <ul class="navi">
-            {% if is_granted('ROLE_BAKER') %}
-                <li><a href="{{ path('create_upcoming_bake') }}">Create new upcoming bake</a></li>
-            {% endif %}
-        </ul>
-    </header>
-{% endblock %}
+{#{% block header %}#}
+    {#<header class="header">#}
+        {#<h1 class="logo">Bossche Bakker</h1>#}
+        {#<ul class="navi">#}
+            {#{% if is_granted('ROLE_BAKER') %}#}
+                {#<li><a href="{{ path('create_upcoming_bake') }}">Create new upcoming bake</a></li>#}
+            {#{% endif %}#}
+        {#</ul>#}
+    {#</header>#}
+{#{% endblock %}#}
 {% block body %}
     <div class="row">
         <div class="col">

@@ -1,12 +1,14 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="row">
-        <div class="col">
-            {{ form_start(form) }}
-            {{ form_widget(form) }}
-            {{ form_end(form) }}
-            <a href="{{ path('home') }}">Cancel</a>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                {{ form_start(form) }}
+                {{ form_widget(form) }}
+                {{ form_end(form) }}
+                <a href="{{ path('home') }}">Cancel</a>
+            </div>
         </div>
     </div>
 
