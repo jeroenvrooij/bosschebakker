@@ -37,7 +37,22 @@ class Bread
      *
      * @var int
      */
-    private $quantity;
+    private $initialQuantity;
+
+    /**
+     * @ORM\Column(type="integer")
+     *
+     * @var int
+     */
+    private $quantityLeft;
+
+    /**
+     * Reduce the quantity that is left after a bread has been ordered.
+     */
+    public function processOrder()
+    {
+        $this->quantityLeft -= 1;
+    }
 
     /**
      * @return int
@@ -90,19 +105,39 @@ class Bread
     /**
      * @return int
      */
-    public function getQuantity(): ?int
+    public function getInitialQuantity(): ?int
     {
-        return $this->quantity;
+        return $this->initialQuantity;
     }
 
     /**
-     * @param int $quantity
+     * @param int $initialQuantity
      *
      * @return Bread
      */
-    public function setQuantity(int $quantity): Bread
+    public function setInitialQuantity(?int $initialQuantity): Bread
     {
-        $this->quantity = $quantity;
+        $this->initialQuantity = $initialQuantity;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getQuantityLeft(): ?int
+    {
+        return $this->quantityLeft;
+    }
+
+    /**
+     * @param int $quantityLeft
+     *
+     * @return $this
+     */
+    public function setQuantityLeft(?int $quantityLeft): Bread
+    {
+        $this->quantityLeft = $quantityLeft;
 
         return $this;
     }

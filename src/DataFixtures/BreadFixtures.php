@@ -13,13 +13,15 @@ class BreadFixtures extends Fixture
         $bread = new Bread();
         $bread->setName("7 Granen - OUD");
         $bread->setBakingDay(new \DateTime("- 4 days"));
-        $bread->setQuantity(4);
+        $bread->setInitialQuantity(4);
+        $bread->setQuantityLeft(4);
         $manager->persist($bread);
 
         $bread = new Bread();
         $bread->setName("7 Granen");
         $bread->setBakingDay(new \DateTime("+ 2 days"));
-        $bread->setQuantity(4);
+        $bread->setInitialQuantity(4);
+        $bread->setQuantityLeft(4);
         $manager->persist($bread);
 
         $manager->flush();

@@ -80,17 +80,21 @@ class BreadController extends Controller
         $order = new Order();
         $order->setBread($bread);
         $order->setUser($this->getUser());
-        $form = $this->createForm(OrderType::class, $order);
 
+        $form = $this->createForm(OrderType::class, $order);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+
             $order = $form->getData();
             $order->setOrderedAt(new \DateTime());
-
-            $em = $this->getDoctrine()->getManager();
             $em->persist($order);
-            $em->flush();
+            $em->flush($order);
+
+            $bread->processOrder();
+            $em->persist($bread);
+            $em->flush($bread);
 
             $this->addFlash(
                 'success',
