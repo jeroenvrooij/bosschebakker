@@ -25,6 +25,7 @@ class UserFixtures extends Fixture
         $user->setEmail('jeroen@demakker.nl')
             ->setPassword($encoded)
             ->setIsActive(true)
+            ->setName("Jeroen van Rooij")
         ;
         $manager->persist($user);
 

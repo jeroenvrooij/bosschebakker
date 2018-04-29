@@ -14,45 +14,72 @@ class User implements UserInterface, \Serializable
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     *
+     * @var string
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=64)
+     *
+     * @var string
      */
     private $password;
 
     /**
      * @ORM\Column(type="string", length=60, unique=true)
+     *
+     * @var string
      */
     private $email;
 
     /**
      * @ORM\Column(name="is_active", type="boolean")
+     *
+     * @var bool
      */
     private $isActive;
+
+    /**
+     * @ORM\Column(type="string")
+     *
+     * @var string
+     */
+    private $name;
 
     public function __construct()
     {
         $this->isActive = true;
     }
 
-    public function getUsername()
+    /**
+     * @return string
+     */
+    public function getUsername(): string
     {
         return $this->email;
     }
 
+    /**
+     * @return null
+     */
     public function getSalt()
     {
         return;
     }
 
-    public function getPassword()
+    /**
+     * @return string
+     */
+    public function getPassword(): string
     {
         return $this->password;
     }
 
-    public function getRoles()
+    /**
+     * @return array
+     */
+    public function getRoles(): array
     {
         return array('ROLE_MAKKER');
     }
@@ -117,4 +144,23 @@ class User implements UserInterface, \Serializable
         return $this;
     }
 
+    /**
+     * @return string
+     */
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string $name
+     *
+     * @return $this
+     */
+    public function setName(?string $name): ?User
+    {
+        $this->name = $name;
+
+        return $this;
+    }
 }
